@@ -9,7 +9,7 @@ using namespace std;
 void merchantDialogue(Party party, int rooms_cleared) {
 
     char input;
-    cout << "If you're looking to get supplies, you've come to the right place." << endl;
+    cout << "*If you're looking to get supplies, you've come to the right place." << endl;
     cout << "I would be happy to part with some of my wares...for the proper price!" << endl << endl;
 
     party.displayInventory();
