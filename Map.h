@@ -35,7 +35,7 @@ private:
     char map_data_[num_rows_][num_cols_]; // stores the character that will be shown at a given (row,col)
 
     int npc_count_;  // stores number of misfortunes currently on map
-    int room_count_; // stores number of sites currently on map
+    int room_count_; // stores number of sites currently on mapp
 public:
     Map();
 
