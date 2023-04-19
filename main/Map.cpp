@@ -1,6 +1,6 @@
 #include "Map.h"
 #include "Party.h"
-//1
+
 using namespace std;
 
 string const Map::MENU_NORMAL[] = {"Investigate", "Fight", "Cook and Eat", " ", " ", " ", " ", " ", " ", " ", " ", " "};
