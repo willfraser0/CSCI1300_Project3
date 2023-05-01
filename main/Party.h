@@ -43,7 +43,7 @@ class Party {
         void displayInventory();
         void cook();
 
-        void addCookware(char input_cookware, int cookware_amount);
+        void addCookware(char input_cookware);
         void addTreasure(char input_treasure);
         int getTreasurePrice();
 
