@@ -16,16 +16,15 @@
 
 using namespace std;
 
-bool gameOver = false;
-
+// Setup thread
 void handleInput(Map map, Party party);
 
 int main() {
 
+    // Setup classes
     Map map;
     Party party;
 
-    
 
     map.addRoom(8, 8);
     map.addNPC(4, 4);
@@ -39,11 +38,7 @@ int main() {
 
     thread first(handleInput,map,party);
 
-    while (!gameOver) {
-
-         // this_thread::sleep_for(chrono::milliseconds(10));
-    }
-  return 0;
+    return 0;
 }
 
 void handleInput(Map map, Party party) { 
@@ -97,7 +92,8 @@ void handleInput(Map map, Party party) {
 
                     // Room option 1
                     if (map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol())) { 
-                        map.enterRoom(map.getPlayerRow(), map.getPlayerCol(), monster_rng(rng)); // Fight monster
+                        monster = monster_rng(rng);
+                        map.enterRoom(map.getPlayerRow(), map.getPlayerCol(), monster); // Fight monster
                         menu_level = 1;
                         break;
                     } 

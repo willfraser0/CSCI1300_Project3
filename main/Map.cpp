@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//
 string const Map::MENU_NORMAL[] = {"Investigate", "Fight", "Cook and Eat", " ", " ", " ", " ", " ", " ", " ", " ", " "};
 string const Map::MENU_ROOM[] = {"Open Door", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
 string const Map::MENU_NPC[] = {"Speak to NPC", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
@@ -446,6 +447,7 @@ bool Map::removeNPC(int row, int col)
  * Parameters: row (int), col (int)
  * Return: boolean (bool)
  */
+
 bool Map::removeRoom(int row, int col)
 {
     for (int i = 0; i < room_count_; i++)
