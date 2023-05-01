@@ -45,6 +45,7 @@ int main() {
 
     // create party member 0 (you)
     string temp_name;
+    system("clear");
     cout << "Enter your name: ";
     cin >> temp_name;
     party.addMember(temp_name);
@@ -55,8 +56,11 @@ int main() {
         cin >> temp_name;
         party.addMember(temp_name);
     }
+
+    party.merchantDialogue();
     
-    cout << "A merchant appears before you!" << endl;
+    system("clear");
+    cout << ">> A merchant appears before you!" << endl << endl;
     cout << "If you're looking to get supplies, you've come to the right place." << endl;
     cout << "I would be happy to part with some of my wares ... for the proper price!" << endl << endl;
 
@@ -119,6 +123,7 @@ void handleInput(Map map, Party party) {
 
             switch (c) { //second parameter of calculate price needs to be counter for amount of rooms cleared, to account for 25% price increase
             case '1':
+                system("clear");
                 cout << "How many kg of ingredients do you need " <<
                     "[" << calculatePrice(1, party.getRoomsCleared()) << " Gold/kg]?" <<
                     "(Enter a positive mulitple of 5, or 0 to cancel)" << endl;
@@ -144,6 +149,7 @@ void handleInput(Map map, Party party) {
                 break;
 
             case '2':
+                system("clear");
                 cout << "I have a several types of cookware, which one would you like?" << endl;
                 cout << "Each type has a different probability of breaking when used, marked with (XX%)." << endl;
 
@@ -218,6 +224,7 @@ void handleInput(Map map, Party party) {
                 break;
 
             case '3':
+                system("clear");
                 cout << "I have a plentiful collection of weapons to choose from, what would you like?" << endl;
                 cout << "Note that some of them provide you a special bonus in combat, marked by a (+X)." << endl;
 
@@ -314,6 +321,7 @@ void handleInput(Map map, Party party) {
                 break;
 
             case '4':
+                system("clear");
                 cout << "The cost of one armor plate is " << calculatePrice(5, party.getRoomsCleared()) << " Gold. How many would you like to buy?" << endl;
                 cin >> customer_input_amount;
 
@@ -332,6 +340,7 @@ void handleInput(Map map, Party party) {
                 break;
 
             case '5':
+                system("clear");    
                 party.displayInventory();
 
                 cout << "I see you have collected some treasures. Would you like to sell them for " << party.getTreasurePrice() << " Gold? (y/n)" << endl;
@@ -348,11 +357,9 @@ void handleInput(Map map, Party party) {
                 }
                 break;
             case '6':
+                system("clear");
                 cout << "Thanks for shopping. Good luck!" << endl;
 
-            default:
-                cout << "Please enter a valid choice" << endl;
-                break;
             }
 
         }

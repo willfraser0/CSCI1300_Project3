@@ -52,11 +52,13 @@ class Party {
 
         void getArmor();
         void addArmor(int armor_amount);
-        
+
         void getWeaponStrength();
     
         int getWeaponDifference();
         void sellTreasure();
+
+        void merchantDialogue();
 };
 
 #endif
