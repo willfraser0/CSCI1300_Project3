@@ -26,8 +26,7 @@ int main() {
     Party party;
 
 
-    map.addRoom(8, 8);
-    map.addNPC(4, 4);
+    map.populateMap();
 
     // These functions let you detect keypresses without having to press enter 
     struct termios old_tio, new_tio;
@@ -37,7 +36,9 @@ int main() {
     tcsetattr(STDIN_FILENO,TCSANOW,&new_tio);
 
     thread first(handleInput,map,party);
+    while (true) {
 
+    }
     return 0;
 }
 

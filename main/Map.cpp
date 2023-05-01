@@ -1,9 +1,11 @@
+#include <random>
+#include <iostream>
 #include "Map.h"
 #include "Party.h"
 
 using namespace std;
 
-//
+// Menu Definitions:
 string const Map::MENU_NORMAL[] = {"Investigate", "Fight", "Cook and Eat", " ", " ", " ", " ", " ", " ", " ", " ", " "};
 string const Map::MENU_ROOM[] = {"Open Door", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
 string const Map::MENU_NPC[] = {"Speak to NPC", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "};
@@ -66,7 +68,45 @@ void Map::escape(int row, int col) {
 }
 
 void Map::populateMap() {
+    random_device rd;
+    mt19937 rng(rd());
+    uniform_int_distribution<int> map(0,11);
+    int x;
+    int y;
+    int n = 0;
+    bool valid = true;
+    int coordinates[10][2];
+    int last_coordinate[2];
     
+    while (n < 10) {
+        x = map(rng);
+        y = map(rng);
+        last_coordinate[0] = x;
+        last_coordinate[1] = y;
+
+        cout << "Testing " << x << ", " << y << endl;
+
+        for (int i = 0; i < 10; i++) {
+            if (coordinates[n] == last_coordinate) {
+                valid = false;
+            }
+        }
+
+        if (valid) {
+            coordinates[n][0] = x;
+            coordinates[n][1] = y;
+            n++;
+            cout << "Added " << x << ", " << y;
+            if (n < 6) {
+                addRoom(x,y);
+                cout << "Room" << endl;
+            } else {
+                addNPC(x,y);
+                cout << "NPC" << endl;
+            }
+        }
+        valid = true;
+    }
 }
 
 // Modified functions:
