@@ -1,6 +1,6 @@
 // to connect to repository
 
-cd CSCI1300_Project3/
+cd CSCI1300_Project3/main
 
 git remote add origin https://github.com/willfraser0/CSCI1300_Project3.git
 
