@@ -44,6 +44,33 @@ string const Map::MONSTERS[][2] = {
     {"Sorcerer","6"}
 };
 
+// Added functions:
+
+int Map::enterRoom(int row, int col, int monster) {
+    system("clear");
+    
+    cout << "Oh no! " << MONSTERS[monster][0] << " (rating: " << MONSTERS[monster][1] << ") appeared" << endl;
+    cout << "1: Attack" << endl;
+    cout << "2: Surrender" << endl;
+
+    return stoi(MONSTERS[monster][1]);
+
+}
+
+void Map::speakToNPC(int row, int col) {
+    cout << "Hi, I'm an NPC!" << endl;
+}
+
+void Map::escape(int row, int col) {
+    cout << "You escaped!" << endl;
+}
+
+void Map::populateMap() {
+    
+}
+
+// Modified functions:
+
 Map::Map()
 {
     resetMap();
@@ -660,21 +687,3 @@ void Map::displayMap()
     }
 }
 
-int Map::enterRoom(int row, int col, int monster) {
-    system("clear");
-    
-    cout << "Oh no! " << MONSTERS[monster][0] << " (rating: " << MONSTERS[monster][1] << ") appeared" << endl;
-    cout << "1: Attack" << endl;
-    cout << "2: Surrender" << endl;
-
-    return stoi(MONSTERS[monster][1]);
-
-}
-
-void Map::speakToNPC(int row, int col) {
-    cout << "Hi, I'm an NPC!" << endl;
-}
-
-void Map::escape(int row, int col) {
-    cout << "You escaped!" << endl;
-}

@@ -40,6 +40,7 @@ public:
     Map();
 
     void resetMap();
+    void populateMap();
 
     // getters
     int getPlayerRow();
