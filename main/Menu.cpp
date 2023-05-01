@@ -52,6 +52,9 @@ void handleInput(Map map, Party party) {
 
     int menu_level = 0;
     int current_monster;
+    int monster_level;
+
+    // Menu levels:
     // 0: base level
     // 1: fight
     // 2: cooking
@@ -93,7 +96,7 @@ void handleInput(Map map, Party party) {
                     // Room option 1
                     if (map.isRoomLocation(map.getPlayerRow(), map.getPlayerCol())) { 
                         monster = monster_rng(rng);
-                        map.enterRoom(map.getPlayerRow(), map.getPlayerCol(), monster); // Fight monster
+                        monster_level = map.enterRoom(map.getPlayerRow(), map.getPlayerCol(), monster); // Fight monster
                         menu_level = 1;
                         break;
                     } 
@@ -146,7 +149,7 @@ void handleInput(Map map, Party party) {
             }
         } else if (menu_level == 1) {
 
-        
+            
             switch (c) {
                 case '1':
                     cout << "You chose to attack" << endl;
@@ -155,6 +158,7 @@ void handleInput(Map map, Party party) {
                 case '2':
                     lost_member = member_rng(rng);
                     party.removeMember(lost_member);
+
                     cout << "You chose to surrender. Unfortunatly " << party.Member(lost_member).getPlayerName() << " died :(" << endl;
                     menu_level = 0;
                     map.displayMap();

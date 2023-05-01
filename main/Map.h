@@ -69,7 +69,7 @@ public:
     bool removeNPC(int row, int col);
     bool removeRoom(int row, int col);
     void exploreSpace(int row, int col);
-    void enterRoom(int row, int col, int monster);
+    int enterRoom(int row, int col, int monster);
     void speakToNPC(int row, int col);
     void escape(int row, int col);
 };

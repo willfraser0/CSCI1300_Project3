@@ -660,12 +660,14 @@ void Map::displayMap()
     }
 }
 
-void Map::enterRoom(int row, int col, int monster) {
+int Map::enterRoom(int row, int col, int monster) {
     system("clear");
     
     cout << "Oh no! " << MONSTERS[monster][0] << " (rating: " << MONSTERS[monster][1] << ") appeared" << endl;
     cout << "1: Attack" << endl;
     cout << "2: Surrender" << endl;
+
+    return stoi(MONSTERS[monster][1]);
 
 }
 
