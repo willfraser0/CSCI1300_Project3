@@ -84,8 +84,6 @@ void Map::populateMap() {
         last_coordinate[0] = x;
         last_coordinate[1] = y;
 
-        cout << "Testing " << x << ", " << y << endl;
-
         for (int i = 0; i < 10; i++) {
             if (coordinates[n] == last_coordinate) {
                 valid = false;
@@ -96,13 +94,10 @@ void Map::populateMap() {
             coordinates[n][0] = x;
             coordinates[n][1] = y;
             n++;
-            cout << "Added " << x << ", " << y;
             if (n < 6) {
                 addRoom(x,y);
-                cout << "Room" << endl;
             } else {
                 addNPC(x,y);
-                cout << "NPC" << endl;
             }
         }
         valid = true;
