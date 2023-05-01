@@ -20,7 +20,10 @@ private:
     int random1;
     int random2;
     int rooms_cleared;
+    
     vector<Monster> monster_list;
+    
+    Monster spawned_monster;
 
 
 
@@ -31,29 +34,42 @@ public:
     Monster();
     Monster(string monster_name, int challenge_rating);
 
+    int battleCalculation();
+
     string getMonsterName();
-    string setMonsterName();
-
     int getMonsterRating();
-    int setMonsterRating();
 
-    Monster Getmonster(int rooms_cleared);
+    string getFirstMonsterName();
+    int getFirstMonsterRating();
 
-    void KillMonster(int monster_id);
+    void setMonsterName(string input_name);
+    void setMonsterRating(int input_rating);
+
+    void killFirstMonster();
 
     void populateMonsters();
 
-    int setRoomsCleared(int rooms_cleared);
+    Monster spawnMonster();
+
+    Monster Getmonster(int rooms_cleared);
+
     void fightDialogue();
 
+    void surrenderDialogue();
+    
+    int setRoomsCleared(int rooms_cleared);
+    
+
     int getWeaponStrength();
-    int getChallengeRating();
+    
     int getWeaponDifference();
+
+    
     int getAmountArmor();
 
     int getRandomNumber();
 
-    void splitMonster();
+    void splitMonster(string input_string, char separator, string arr[], int arr_size);
 
 
     
