@@ -92,7 +92,8 @@ void Party::cook() {
     
 }
 
-void Party::addCookware(char input_cookware) {
+void Party::addCookware(char input_cookware, int amount) {
+    for (int i = 0; i < amount; i++) {
     switch (input_cookware) {
         case 'P':
             cookware[0] ++;
@@ -103,7 +104,7 @@ void Party::addCookware(char input_cookware) {
         case 'C':
             cookware[2] ++;
         break;
-}}
+}}}
 
 void Party::addTreasure(char input_treasure) {
     switch (input_treasure) {
@@ -123,3 +124,49 @@ void Party::addTreasure(char input_treasure) {
             treasures[4] ++;
         break;
 }}
+
+void Party::sellTreasure() {
+    cout << "treasures are sold" << endl;
+}
+
+int Party::getRoomsCleared() {
+    return rooms_cleared;
+}
+
+void Party::addWeapons(char input_weapon, int member) {
+    weapons[member] = input_weapon;
+}
+
+void Party::addArmor(int armor_amount){
+    for (int i = 0; i < armor_amount; i++) {
+        armor[i] = 1;
+    }
+}
+
+int Party::getTreasurePrice() {
+    int value = 0;
+    for (int i = 0; i < 5; i++) {
+        switch(treasures[i]) {
+        case 'R':
+            value += 10;
+        break;
+
+        case 'N':
+            value += 20;
+        break;
+
+        case 'B':
+            value += 30;
+        break;
+
+        case 'C':
+            value += 40;
+        break;
+
+        case 'G':
+            value += 50;
+        break;
+        }
+    }
+    return value;
+}

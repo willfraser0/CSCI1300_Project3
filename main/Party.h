@@ -16,7 +16,7 @@ class Party {
 
         int cookware[3]; // {ceramic pot (P), cauldron (C), }frying pan (F),
         int treasures[5]; // {Silver ring (R), Ruby necklace (N), Emerald bracelet (B), Diamond circlet (C), Gem-encrusted goblet (G)}
-        int weapons[5] = {0};
+        char weapons[5] = {0};
         bool armor[5] = {0};
         vector<Player> party_members;
 
@@ -43,7 +43,7 @@ class Party {
         void displayInventory();
         void cook();
 
-        void addCookware(char input_cookware);
+        void addCookware(char input_cookware, int amount);
         void addTreasure(char input_treasure);
         int getTreasurePrice();
 
@@ -52,14 +52,11 @@ class Party {
 
         void getArmor();
         void addArmor(int armor_amount);
-    
+        
         void getWeaponStrength();
     
         int getWeaponDifference();
-    
-        
-
-
+        void sellTreasure();
 };
 
 #endif
