@@ -18,6 +18,7 @@ class Party {
         int treasures[5]; // {Silver ring (R), Ruby necklace (N), Emerald bracelet (B), Diamond circlet (C), Gem-encrusted goblet (G)}
         int weapons[5] = {0};
         bool armor[5] = {0};
+        int fullness[5] = {50};
         vector<Player> party_members;
 
     public:
@@ -26,8 +27,14 @@ class Party {
         void addMember(string member_name);
         void removeMember(int member_id);
         Player Member(int member_id);
+        int getAmountPartyMembers();
+
+        int getPlayerFullness(int member_id);
+        void setPlayerFullness(int member_id, int fullness);
     
         string getLastMemberName();
+
+        void removeLastMember();
 
         void addRoomCleared();
         int getRoomsCleared();
@@ -43,17 +50,18 @@ class Party {
         void displayInventory();
         void cook();
 
-        void addCookware(char input_cookware, int cookware_amount);
+        void addCookware(char input_cookware);
+     
         void addTreasure(char input_treasure);
         int getTreasurePrice();
 
         void getWeapons();
         void addWeapons(char weapon_type, int amount);
 
-        void getArmor();
+        int getArmor();
         void addArmor(int armor_amount);
     
-        void getWeaponStrength();
+        int getWeaponStrength();
     
         int getWeaponDifference();
     
