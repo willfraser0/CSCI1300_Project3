@@ -58,7 +58,6 @@ class Party {
         int getWeaponDifference();
         void sellTreasure();
 
-        void merchantDialogue();
 };
 
 #endif

@@ -170,8 +170,3 @@ int Party::getTreasurePrice() {
     }
     return value;
 }
-
-void Party:merchantDialogue() {
-
-    
-}
