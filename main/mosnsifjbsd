@@ -1,0 +1,40 @@
+ else if (menu_level == 1)
+        {
+
+            switch (c)
+            {
+            case '1':
+               
+                cout << "You chose to fight! The winner will be decided based on a calculation involving total weapon strength, weapon difference, amount of armor, the monster's challenge rating, and some chance." << endl;
+                int result = Monster.battleCalculation();
+                if (result <= 0)
+                {
+                    cout << "Your party has lost the battle. You have lost 20 gold pieces and 20 ingredients." << endl;
+                    if (Monster.getRandomNumber(0, 10) == 1)
+                    {
+                        cout << "A member of your party has perished from the battle. Rest in peace, " << Party::getLastMemberName() << endl;
+                        Party::removeLastMember();
+                    }
+                }
+                else if (result > 0)
+                {
+                    cout << "Congratulations, you and your party have won the battle! You will receive some gold and ingredients scaled to the monster's challenge rating. The monster is dead and will not be encountered again." << endl;
+                    Party::addGold(10 * Monster::getFirstMonsterRating());
+                    Party::addIngredients(5 * Monster::getFirstMonsterRating());
+                    Monster::killFirstMonster();
+                    Party::displayInventory();
+                }
+                break;
+
+            case '2':
+                lost_member = member_rng(rng);
+                party.removeMember(lost_member);
+
+                cout << "You chose to surrender. Unfortunately " << party.Member(lost_member).getPlayerName() << " died :(" << endl;
+                menu_level = 0;
+                map.displayMap();
+                break;
+            }
+        }
+    }
+}
