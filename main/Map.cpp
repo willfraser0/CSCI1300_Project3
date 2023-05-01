@@ -92,7 +92,7 @@ void Map::populateMap() {
             }
         }
 
-        if (valid) {
+        if (valid && x != 11 && y != 6) {
             coordinates[n][0] = x;
             coordinates[n][1] = y;
             n++;
