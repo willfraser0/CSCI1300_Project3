@@ -16,16 +16,25 @@ monster_name = i_monster_name;
 challenge_rating = i_challenge_rating;
 }
 
+int Monster::battleCalculation()
+{
+    int battle_result=0;
+    int random1=Monster.getRandomNumber(1, 6);
+    int random2=Monster.getRandomNumber(1, 6);
+    int armor=Monster.getAmountArmor();
+    int weapon=Monster.getWeaponStrength();
+    int weapon_difference=Monster.getWeaponDifference();
+    int challenge_rating=Monster.getFirstMonsterRating();
 
+    battle_result=(random1 * weapon + weapon_difference)-((random2*challenge_rating)/(armor))
+
+    return battle_result;
+
+}
 
 string Monster::getMonsterName()
 {
     return monster_name;
-}
-
-string Monster::setMonsterName(string input_name)
-{
-    monster_name = input_name;
 }
 
 int Monster::getMonsterRating()
@@ -33,14 +42,31 @@ int Monster::getMonsterRating()
     return challenge_rating;
 }
 
+
+string Monster::getFirstMonsterName()
+{
+    return monster_list[0].getMonsterName();
+}
+
+int Monster::getFirstMonsterRating()
+{
+    return stoi(monster_list[0].getMonsterRating());
+}
+
+
+void Monster::setMonsterName(string input_name)
+{
+    monster_name = input_name;
+}
+
 int Monster::setMonsterRating(int input_rating)
 {
     challenge_rating = input_rating;
 }
 
-void Monster::KillMonster(int monster_id)
+void Monster::killFirstMonster()
 {
-    monster_list.erase(monster_id);
+    monster_list.erase(monster_list.begin());
 }
 
 void Monster::populateMonsters()
@@ -62,10 +88,10 @@ void Monster::populateMonsters()
         else
         {
             splitMonster(line, ',', arr_monsters, 2);
-            monster_name = arr_monsters[0];
-            challenge_rating = stoi(arr_monsters[1]);
+            monster_name = arr_monsters[0];           //take name from split
+            challenge_rating = stoi(arr_monsters[1]); //take challenge rating from split
 
-            monster_list[monster_id] = Monster(monster_name, challenge_rating);
+            monster_list[monster_id] = Monster(monster_name, challenge_rating);//place monster in monstsers vector
         }
 
         if (monster_id < 21)
@@ -79,21 +105,68 @@ void Monster::populateMonsters()
     }
 }
 
+Monster Monster::spawnMonster()
+{
+    string name = monster_list[0].getMonsterName();
+    int challenge = monster_list[0].getMonsterRating();
+
+    Monster spawned_monster = Monster(name, challenge);
+
+}
+
+
 void Monster::fightDialogue()
 {
-    cout << "You've encountered a(n) " << << "." << endl;
+    cout << "You've encountered a(n) " << Monster.getFirstMonsterName() << "with a challenge rating of "<< Monster.getFirstMonsterRating() << endl;
 
     if (Party.getWeaponStrength() == 0)
     {
         Monster.surrenderDialogue();
+    }
+    string response="";
+    cout << "Would you like to fight or surrender? (f/s)" << endl;
+    cin >> response;
+
+    if(response==s)
+    {
+        Monster.surrenderDialogue();
+    }
+    else if(response==f)
+    {
+        cout << "You chose to fight! The winner will be decided based on a calculation involving total weapon strength, weapon difference, amount of armor, the monsters challenge rating, and some chance." << endl;
+
+        int result = Monster.battleCalculation();
+
+        if(result <= 0)
+        {
+            cout << "Your party has lost the battle. You have lose 20 gold pieces and 20 ingredients." << endl;
+
+            if(Monster.getRandomNumber(0, 10)==1)
+            {
+                cout << "A member of your party has perished from the battle. Rest in peace, " << Party.getLastMemberName() << endl;
+                Party.removeLastMember();
+            }
+
+        }
+        else if(result>0)
+        {
+            cout << "Congratulations, you and your party have won the battle! You will recieve some gold and ingredients scaled to the monsters challenge rating. The monster is dead and will not be encountered again." << endl;
+            Party.addGold(10 * Monster.getFirstMonsterRating());
+            Party.addIngredients(5 * Monster.getFirstMonsterRating());
+            Monster.killFirstMonster();
+            Party.displayInventory();
+        }
+
     }
 }
 
 void Monster::surrenderDialogue()
 {
 
-    cout << "Oh no! You've surrendered!" << party_members.back().getPlayerName() << " has perished. Each of your remaining players has a 50% chance to lose one fullness." << endl;
+    cout << "Oh no! You've surrendered!" << Party.getLastMemberName() << " has perished. Each of your remaining players has a 50% chance to lose one fullness." << endl;
 
+    Party.removeLastMember();
+    
     for (int member_id = 0; i < Party.getAmountPartyMembers(); i++)
     {
         srand(time(0));
@@ -108,7 +181,7 @@ void Monster::surrenderDialogue()
     Party.displayInventory();
 }
 
-int Monster::setRoomsCleared()
+int Monster::setRoomsCleared(int rooms_cleared)
 {
     int rooms_cleared = Party.getRoomsCleared();
 }
@@ -118,19 +191,15 @@ int Monster::getWeaponStrength()
     return Party.getWeaponStrength();
 }
 
-int getWeaponDifference()
+int Monster::getWeaponDifference()
 {
-
-
+    return Party.getAmountDifferentWeapons();
 }
 
-int getAmountArmor()
+int Monster::getAmountArmor()
 {
-    int amount_armor=0;
-
+    return Party.getArmor();
 }
-
-
 
 int Monster::getRandomNumber(int lower_limit, int upper_limit)
 {
