@@ -18,9 +18,43 @@ void Party::removeMember(int member_id) {
     party_members.erase(party_members.begin() + member_id - 1);
 }
 
+void Party::removeLastMember()
+{
+    party_members.pop_back();
+}
+
+int Party::getAmountPartyMembers()
+{
+    return party_members.size();
+}
+
+int Party::getPlayerFullness(int member_id)
+{
+    return fullness[member_id];
+}
+
+void Party::setPlayerFullness(int member_id, int i_fullness)
+{
+    fullness[member_id]=i_fullness;
+}
+
+
+
 Player Party::Member(int member_id) {
     return party_members[member_id];
 }
+
+void Party::addRoomCleared()
+{
+    rooms_cleared++;
+}
+
+int Party::getRoomsCleared()
+{
+    return rooms_cleared;
+}
+
+
 
 void Party::setGold(int input_gold) {
     gold_coins = input_gold;
@@ -123,3 +157,97 @@ void Party::addTreasure(char input_treasure) {
             treasures[4] ++;
         break;
 }}
+
+int Party::getTreasurePrice()
+{
+    int sale_price = treasures[0] * 10 + treasures[1] * 20 + treasures[2] * 30 + treasures[3] * 40 + treasures[4] * 50;
+    return sale_price;
+}
+
+void Party::addWeapons(char weapon_type, int amount)
+{
+    switch (weapon_type)
+    {
+    case 'C':
+        weapons[0] += amount;
+        break;
+    case 'S':
+        weapons[1] += amount;
+        break;
+    case 'R':
+        weapons[2] += amount;
+        break;
+    case 'B':
+        weapons[3] += amount;
+        break;
+    case 'L':
+        weapons[4] += amount;
+        break;
+    }
+}
+
+void Party::addArmor(int armor_amount)
+{
+    if (armor[0] = 0 && armor_amount > 0)
+    {
+        armor[0] = 1;
+        armor_amount--;
+    }
+    else if (armor[1] = 0 && armor_amount > 0)
+    {
+        armor[1] = 1;
+        armor_amount--;
+    }
+    else if (armor[2] = 0 && armor_amount > 0)
+    {
+        armor[2] = 1;
+        armor_amount--;
+    }
+    else if (armor[3] = 0 && armor_amount > 0)
+    {
+        armor[3] = 1;
+        armor_amount--;
+    }
+    else if (armor[4] = 0 && armor_amount > 0)
+    {
+        armor[4] = 1;
+        armor_amount--;
+    }
+}
+
+int Party::getArmor()
+{
+    int amount_armor = 0;
+    for (int member_id = 0; member_id < party_members.size(); member_id++)
+    {
+        if (armor[member_id] == 1)
+        {
+            amount_armor++;
+        }
+    }
+    return amount_armor;
+}
+
+int Party::getWeaponStrength()
+{
+    int weapon_strength = (weapons[0] + weapons[1] + 1*(weapons[2]) + 2*(weapons[3]) + 3*(weapons[4]));
+    return weapon_strength;
+}
+
+int Party::getWeaponDifference()
+{
+    int weapon_difference = 0;
+    
+    if (weapons[0] != 0 && weapons[1] != 0 && weapons[2] != 0 &&  weapons[3] != 0 && weapons[4] != 0)
+    {
+        weapon_difference=4;
+    }
+    
+    return weapon_difference;
+}
+
+string Party::getLastMemberName()
+{
+    return party_members.back().getPlayerName();
+}
+
